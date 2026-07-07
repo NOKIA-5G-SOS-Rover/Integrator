@@ -1,0 +1,41 @@
+@startuml rover_bce
+title Robustness Architecture Try1 - 5G SOS Rover (Structural)
+
+' Visual settings
+skinparam backgroundColor white
+skinparam componentStyle uml2
+
+' MPU Partition (Complex Processing - Linux)
+package "MPU (Qualcomm Debian - Edge & Comms)" {
+    boundary "Video Camera Interface" as CamBnd
+    boundary "5G Module Adapter" as NetBnd
+    
+    control "AI Vision Controller" as AIVisCtrl
+    control "Main Navigation Controller" as NavCtrl
+    
+    entity "TargetState (Person Info)" as TargetEnt
+    entity "RoverState (Telemetry)" as RoverEnt
+}
+
+' MCU Partition (Real-Time - Microcontroller)
+package "MCU (STM32 - Real-Time Control)" {
+    boundary "Motor Drivers" as MotorBnd
+    control "Motion Controller" as MotionCtrl
+}
+
+
+' MPU Connections
+CamBnd -- AIVisCtrl
+NetBnd -- NavCtrl
+
+AIVisCtrl -- TargetEnt
+NavCtrl -- RoverEnt
+AIVisCtrl -- NavCtrl
+
+' Internal Interface MPU <-> MCU
+NavCtrl -- MotionCtrl : Internal Serial Protocol
+
+' MCU Connections
+MotionCtrl -- MotorBnd
+
+@enduml

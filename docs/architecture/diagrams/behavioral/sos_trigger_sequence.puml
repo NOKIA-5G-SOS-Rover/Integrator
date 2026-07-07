@@ -1,0 +1,55 @@
+@startuml sos_trigger_sequence
+title Behavioral Sequence Diagram - SOS Trigger & Motor Halt
+
+' Visual settings
+skinparam backgroundColor white
+skinparam sequenceMessageAlign center
+
+' Defining participants in order of the data flow
+participant "Camera\nInterface" as Cam
+participant "AI Vision\nController" as AI
+participant "Navigation\nController" as Nav
+participant "5G\nAdapter" as Net
+participant "Cloud\nDashboard" as Cloud
+participant "Motion\nController (MCU)" as MCU
+participant "Motor\nDrivers" as Motors
+
+== Phase 1: Capture & Inference ==
+Cam -> AI: Stream raw video frame
+activate AI
+
+AI -> AI: Run inference model
+note right of AI: Person detected!
+
+== Phase 2: Trigger & Routing ==
+AI -> Nav: Emits SOS Alert + Bounding Box
+deactivate AI
+activate Nav
+
+note right of Nav: MPU splits commands:\n1. Alert Cloud\n2. Stop Motors
+
+== Phase 3: Parallel Execution (Network & Hardware) ==
+par Network Telemetry
+    Nav -> Net: AT Command: Send SOS Payload
+    activate Net
+    Net -> Cloud: POST /api/alerts (JSON)
+    activate Cloud
+    Cloud --> Net: 200 OK
+    deactivate Cloud
+    Net --> Nav: Network Ack
+    deactivate Net
+    
+else Real-Time Hardware Halt
+    Nav -> MCU: Serial: EMERGENCY_STOP vector
+    activate MCU
+    MCU -> Motors: Drop PWM signals to 0
+    activate Motors
+    Motors --> MCU: Hardware halted
+    deactivate Motors
+    MCU --> Nav: Serial Ack: Rover Stopped
+    deactivate MCU
+end
+
+deactivate Nav
+
+@enduml
