@@ -1,0 +1,30 @@
+@startuml cloud_bce
+title Robustness Diagram - Cloud Repository (.NET Backend)
+
+skinparam backgroundColor white
+skinparam componentStyle uml2
+
+package "Docker Container: Cloud Repo (.NET)" {
+    boundary "Arduino 5G Ingestion" as IngestBnd
+    boundary "Frontend Web API" as FrontAPIBnd
+    boundary "Database Adapter" as DBBnd
+    
+    control "Alert Router" as AlertCtrl
+    control "Telemetry Controller" as TelemCtrl
+    
+    entity "SOSAlert (Record)" as AlertEnt
+    entity "RoverSession" as SessionEnt
+    
+    IngestBnd -- AlertCtrl
+    IngestBnd -- TelemCtrl
+    
+    AlertCtrl -- AlertEnt
+    TelemCtrl -- SessionEnt
+    
+    AlertCtrl -- DBBnd
+    TelemCtrl -- DBBnd
+    
+    FrontAPIBnd -- AlertCtrl
+    FrontAPIBnd -- TelemCtrl
+}
+@enduml

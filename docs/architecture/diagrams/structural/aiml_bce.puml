@@ -1,0 +1,19 @@
+@startuml aiml_bce
+title Robustness Diagram - AI-ML Repository (Vision Pipeline)
+
+skinparam backgroundColor white
+skinparam componentStyle uml2
+
+package "AI-ML Repo (Python/C++)" {
+    boundary "Video Camera Interface" as CamBnd
+    boundary "Navigation Output Interface" as NavOutBnd
+    
+    control "AI Vision Controller" as AIVisCtrl
+    
+    entity "TargetState (Bounding Box/Confidence)" as TargetEnt
+    
+    CamBnd -- AIVisCtrl
+    AIVisCtrl -- TargetEnt
+    AIVisCtrl -- NavOutBnd : Emit SOS Alerts
+}
+@enduml

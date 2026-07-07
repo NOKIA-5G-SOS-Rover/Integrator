@@ -1,0 +1,24 @@
+@startuml embedded_bce
+title Robustness Diagram - Embedded Repository (Arduino & MPU Nav)
+
+skinparam backgroundColor white
+skinparam componentStyle uml2
+
+package "Embedded Repo (Arduino C/C++)" {
+    boundary "5G Module Adapter (To .NET Cloud)" as 5GBnd
+    boundary "Motor Drivers (PWM)" as MotorBnd
+    boundary "AI Data Interface" as AIBnd
+    
+    control "Main Navigation Controller" as NavCtrl
+    control "Motion Controller" as MotionCtrl
+    
+    entity "RoverState" as StateEnt
+    
+    5GBnd -- NavCtrl
+    AIBnd -- NavCtrl
+    NavCtrl -- StateEnt
+    
+    NavCtrl -- MotionCtrl : Internal Serial Protocol
+    MotionCtrl -- MotorBnd
+}
+@enduml

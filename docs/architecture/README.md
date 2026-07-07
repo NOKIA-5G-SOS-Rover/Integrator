@@ -5,42 +5,43 @@
 **Status:** Initial Draft (Issue #1)
 
 ## Overview
-This document defines the high-level software architecture for the 5G SOS Rover. To ensure absolute clarity and adhere to UML standards, our documentation strictly separates structural modeling from temporal/behavioral modeling. 
+This document defines the software architecture for the 5G SOS Rover. Our documentation strictly separates structural modeling (components and boundaries) from temporal/behavioral modeling (execution over time). 
 
 ---
 
-## 1. Structural Architecture (BCE)
+## 1. System-Level Architecture (Structural)
 
-The diagram below represents the **Structural Architecture** using the Robustness (Boundary-Control-Entity) pattern. It defines the components across our dual-processing hardware (MPU/Linux + MCU/STM32) and their permitted communication channels.
+The diagram below represents the high-level **Structural Architecture** using the Robustness (Boundary-Control-Entity) pattern across our dual-processing hardware. 
 
 ![Rover Structural Architecture](./img/rover_bce.svg)
 
-### Component Breakdown
+---
 
-#### MPU Partition (Qualcomm Debian - AI & Comms)
-Responsible for heavy computation, edge AI inference, and network routing.
-* **Boundaries:**
-  * `Video Camera Interface`: Captures the raw video stream.
-  * `5G Module Adapter`: Handles serial/network communication with the standalone 5G hardware.
-* **Controls:**
-  * `AI Vision Controller`: Executes computer vision models for person detection.
-  * `Main Navigation Controller`: Manages high-level routing and decision-making logic.
-* **Entities:**
-  * `TargetState`: Data model containing detected person coordinates and SOS flags.
-  * `RoverState`: Data model containing telemetry (e.g., battery level, network strength).
+## 2. Component-Level Architecture (Repo-Specific)
 
-#### MCU Partition (STM32 - Real-Time Control)
-Responsible for hard real-time execution and physical hardware interaction.
-* **Boundaries:**
-  * `Motor Drivers`: Hardware interface to the H-bridges controlling the 4 motors.
-* **Controls:**
-  * `Motion Controller`: Translates MPU navigation vectors into real-time PWM signals and manages emergency hardware stops.
+To allow teams to work independently, the system architecture is decomposed into four repository-specific structural maps. These dictate the strict boundaries and entities for each development squad.
+
+### AI-ML Repository (Vision Pipeline)
+Responsible for computer vision inference.
+![AI-ML Architecture](./img/aiml_bce.svg)
+
+### Embedded Repository (Arduino & Nav)
+Responsible for hardware control (STM32/Arduino) and navigation routing.
+![Embedded Architecture](./img/embedded_bce.svg)
+
+### Cloud Repository (.NET Backend)
+Containerized Docker environment handling 5G ingestion and data persistence.
+![Cloud Architecture](./img/cloud_bce.svg)
+
+### Frontend Repository (React Dashboard)
+Web application for the human operator.
+![Frontend Architecture](./img/frontend_bce.svg)
 
 ---
 
-## 2. Behavioral Architecture (Sequence)
+## 3. Behavioral Architecture (Sequence)
 
-The following sequence details the chronological execution of an SOS event. It demonstrates how the MPU parallelizes external network alerts and real-time internal hardware control upon detecting a target.
+The following sequence details the chronological execution of an SOS event, demonstrating how the MPU parallelizes external network alerts and internal hardware control.
 
 ![SOS Trigger Sequence](./img/sos_trigger_sequence.svg)
 
@@ -53,11 +54,12 @@ The following sequence details the chronological execution of an SOS event. It d
 
 ---
 
-## 3. Integration Protocols
+## 4. Integration Protocols
 
 * **MPU <-> MCU Communication:** Handled via an internal serial protocol (packet structure and baud rate to be defined).
 * **AI-ML <-> Embedded / Navigation:** The `AI Vision Controller` updates the `TargetState` entity, which the `Navigation Controller` polls to adjust movement vectors.
 
 ---
 **Changelog:**
-* *v0.1 - Initial draft: Added BCE structural definition and SOS behavioral sequence diagrams.*
+* *v0.2 - Added component-level BCE architectural decomposition for all 4 repositories.*
+* *v0.1 - Initial draft: Added system-level BCE structural definition and SOS behavioral sequence diagrams.*

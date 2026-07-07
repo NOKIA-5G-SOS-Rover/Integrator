@@ -1,0 +1,25 @@
+    @startuml frontend_bce
+    title Robustness Diagram - Frontend Repository (Dashboard)
+
+    skinparam backgroundColor white
+    skinparam componentStyle uml2
+
+    package "Frontend Repo (React)" {
+        boundary "Web UI (Browser)" as UIBnd
+        boundary "Cloud API Client" as CloudClientBnd
+        
+        control "Dashboard Controller" as DashCtrl
+        control "Map Renderer" as MapCtrl
+        
+        entity "AppState (Active Alerts/Location)" as AppEnt
+        
+        UIBnd -- DashCtrl
+        UIBnd -- MapCtrl
+        
+        CloudClientBnd -- DashCtrl
+        DashCtrl -- AppEnt
+        
+        DashCtrl -- MapCtrl : State Updates
+        MapCtrl -- AppEnt
+    }
+    @enduml
