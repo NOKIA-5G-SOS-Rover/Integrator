@@ -14,33 +14,22 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Important: gets the full history so we can pull/push
 
-      # Step B: Install Graphviz, PlantUML, and the necessary Java Runtime
       - name: Install Tools
         run: sudo apt-get update && sudo apt-get install -y graphviz plantuml default-jre
 
-      # Step C: Generate SVGs
       - name: Generate SVGs
         run: |
           mkdir -p img
-          # Print files found for debugging
-          echo "Found these PUML files:"
-          find docs -name "*.puml"
-          # Run generation
           find docs -name "*.puml" -exec plantuml -tsvg {} -o "${GITHUB_WORKSPACE}/img" \;
-          # Show us what was generated
-          echo "Generated contents in img folder:"
-          ls -R img/
 
-      # Step D: Native Commit
       - name: Commit and Push Changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add img/*.svg
-          if git diff --quiet && git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: auto-generate SVG diagrams [skip ci]"
-            git push
-          fi
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-generate SVG diagrams [skip ci]"
+          file_pattern: "img/*.svg"
+          # This pulls the latest remote changes before pushing
+          skip_fetch: false 
+          push_options: '--force'
