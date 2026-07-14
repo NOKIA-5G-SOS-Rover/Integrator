@@ -10,7 +10,7 @@ package "Embedded Repo (Arduino C/C++)" {
     boundary "AI Data Interface" as AIBnd
     
     control "Main Navigation Controller" as NavCtrl
-    control "Motion Controller" as MotionCtrl
+    control "Motion C" as MotionCtrl
     
     entity "RoverState" as StateEnt
     
