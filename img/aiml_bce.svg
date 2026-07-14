@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="389px" preserveAspectRatio="none" style="width:574px;height:389px;" version="1.1" viewBox="0 0 574 389" width="574px" zoomAndPan="magnify"><defs><filter height="300%" id="f11o1coysk3f42" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="500" x="43" y="16.708">Robustness Diagram - AI-ML Repository (Vision Pipeline)</text><!--MD5=[fc774fc80e368883789b4aa3a1dc7f30]
+cluster AI-ML Repo (Python/C++)--><polygon fill="#FFFFFF" filter="url(#f11o1coysk3f42)" points="22,44.9531,228,44.9531,235,67.25,552,67.25,552,377.9531,22,377.9531,22,44.9531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="235" y1="67.25" y2="67.25"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="200" x="26" y="59.9482">AI-ML Repo (Python/C++)</text><!--MD5=[f0612543302c7bb4934d5e5d70addc88]
+entity CamBnd--><path d="M204.5,83.9531 L204.5,107.9531 M204.5,95.9531 L221.5,95.9531 " fill="none" filter="url(#f11o1coysk3f42)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="233.5" cy="95.9531" fill="#FEFECE" filter="url(#f11o1coysk3f42)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="160" x="145" y="124.9482">Video Camera Interface</text><!--MD5=[a0aca5401ce8fd3c2fbae484a87a1f4c]
+entity NavOutBnd--><path d="M110.5,317.9531 L110.5,341.9531 M110.5,329.9531 L127.5,329.9531 " fill="none" filter="url(#f11o1coysk3f42)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="139.5" cy="329.9531" fill="#FEFECE" filter="url(#f11o1coysk3f42)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="187" x="37.5" y="358.9482">Navigation Output Interface</text><!--MD5=[154009bfab623b6d719e1de9e62f3060]
+entity AIVisCtrl--><ellipse cx="225" cy="204.9531" fill="#FEFECE" filter="url(#f11o1coysk3f42)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="221,192.9531,227,187.9531,225,192.9531,227,197.9531,221,192.9531" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="161" y="233.9482">AI Vision Controller</text><!--MD5=[aa0956f814bcc3291cfed5497d76cf85]
+entity TargetEnt--><ellipse cx="398" cy="329.9531" fill="#FEFECE" filter="url(#f11o1coysk3f42)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="386" x2="410" y1="343.9531" y2="343.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="276" x="260" y="358.9482">TargetState (Bounding Box/Confidence)</text><!--MD5=[9dfbda61bd48087c8e441970e0a9d10d]
+link CamBnd to AIVisCtrl--><path d="M225,128.1731 C225,146.1131 225,170.8431 225,188.7831 " fill="none" id="CamBnd-AIVisCtrl" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[d52a25c870c294e09f1ef056bdd06468]
+link AIVisCtrl to TargetEnt--><path d="M257.54,237.0931 C288.47,259.0831 334.72,291.9631 365.61,313.9231 " fill="none" id="AIVisCtrl-TargetEnt" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[63fc74c8b7d2bc7bcd281a5030938ce1]
+link AIVisCtrl to NavOutBnd--><path d="M207.32,237.0931 C190.51,259.0831 165.38,291.9631 148.6,313.9231 " fill="none" id="AIVisCtrl-NavOutBnd" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="102" x="184" y="280.02">Emit SOS Alerts</text><!--MD5=[546b6e7c2df88970668edd45ab8a5971]
+@startuml aiml_bce
+title Robustness Diagram - AI-ML Repository (Vision Pipeline)
+
+skinparam backgroundColor white
+skinparam componentStyle uml2
+
+package "AI-ML Repo (Python/C++)" {
+    boundary "Video Camera Interface" as CamBnd
+    boundary "Navigation Output Interface" as NavOutBnd
+    
+    control "AI Vision Controller" as AIVisCtrl
+    
+    entity "TargetState (Bounding Box/Confidence)" as TargetEnt
+    
+    CamBnd - - AIVisCtrl
+    AIVisCtrl - - TargetEnt
+    AIVisCtrl - - NavOutBnd : Emit SOS Alerts
+}
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 10:22:07 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.19+10
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>

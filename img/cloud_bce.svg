@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="371px" preserveAspectRatio="none" style="width:510px;height:371px;" version="1.1" viewBox="0 0 510 371" width="510px" zoomAndPan="magnify"><defs><filter height="300%" id="fl9fn6phlouky" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="495" x="3.5" y="16.708">Robustness Diagram - Cloud Repository (.NET Backend)</text><!--MD5=[8bdac1ad0c233837e035d89c51069bcd]
+cluster Docker Container: Cloud Repo (.NET)--><polygon fill="#FFFFFF" filter="url(#fl9fn6phlouky)" points="22,44.9531,319,44.9531,326,67.25,468,67.25,468,359.9531,22,359.9531,22,44.9531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="326" y1="67.25" y2="67.25"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="291" x="26" y="59.9482">Docker Container: Cloud Repo (.NET)</text><!--MD5=[01d6af1b2327a4fc88008ff685118737]
+entity IngestBnd--><path d="M298.5,83.9531 L298.5,107.9531 M298.5,95.9531 L315.5,95.9531 " fill="none" filter="url(#fl9fn6phlouky)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="327.5" cy="95.9531" fill="#FEFECE" filter="url(#fl9fn6phlouky)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="145" x="246.5" y="124.9482">Arduino 5G Ingestion</text><!--MD5=[082eab8fac54a4ab7f3a35fb50e19c95]
+entity FrontAPIBnd--><path d="M129.5,83.9531 L129.5,107.9531 M129.5,95.9531 L146.5,95.9531 " fill="none" filter="url(#fl9fn6phlouky)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="158.5" cy="95.9531" fill="#FEFECE" filter="url(#fl9fn6phlouky)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="123" x="88.5" y="124.9482">Frontend Web API</text><!--MD5=[3009b9d984c4ccb602baab067deaa6cc]
+entity DBBnd--><path d="M238.5,299.9531 L238.5,323.9531 M238.5,311.9531 L255.5,311.9531 " fill="none" filter="url(#fl9fn6phlouky)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="267.5" cy="311.9531" fill="#FEFECE" filter="url(#fl9fn6phlouky)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="124" x="197" y="340.9482">Database Adapter</text><!--MD5=[62abee12df8490a95295a43390282310]
+entity AlertCtrl--><ellipse cx="158" cy="203.9531" fill="#FEFECE" filter="url(#fl9fn6phlouky)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="154,191.9531,160,186.9531,158,191.9531,160,196.9531,154,191.9531" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="117" y="232.9482">Alert Router</text><!--MD5=[2fdaf4d566b5d731a991e82da71afe2c]
+entity TelemCtrl--><ellipse cx="310" cy="203.9531" fill="#FEFECE" filter="url(#fl9fn6phlouky)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="306,191.9531,312,186.9531,310,191.9531,312,196.9531,306,191.9531" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="140" x="240" y="232.9482">Telemetry Controller</text><!--MD5=[6a7e91fa4dd0291e34b69f78f759b6d7]
+entity AlertEnt--><ellipse cx="100" cy="311.9531" fill="#FEFECE" filter="url(#fl9fn6phlouky)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="88" x2="112" y1="325.9531" y2="325.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="124" x="38" y="340.9482">SOSAlert (Record)</text><!--MD5=[9cb3cea2577a09e9a00dd48eb14bee6b]
+entity SessionEnt--><ellipse cx="404" cy="311.9531" fill="#FEFECE" filter="url(#fl9fn6phlouky)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="392" x2="416" y1="325.9531" y2="325.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="95" x="356.5" y="340.9482">RoverSession</text><!--MD5=[ae6f094c20cdd62b57507436e32d3e90]
+link IngestBnd to AlertCtrl--><path d="M284.07,127.9531 C257.15,145.6731 220.11,170.0631 193.14,187.8131 " fill="none" id="IngestBnd-AlertCtrl" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[a9190f85c08f41102ae090ae8b088716]
+link IngestBnd to TelemCtrl--><path d="M317.05,127.9531 C315.55,145.6131 313.49,169.8931 311.98,187.6331 " fill="none" id="IngestBnd-TelemCtrl" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[775ae825fdbb6927086a62722268690e]
+link AlertCtrl to AlertEnt--><path d="M145.41,235.9531 C135.75,253.6131 122.47,277.8931 112.76,295.6331 " fill="none" id="AlertCtrl-AlertEnt" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[def5b541d0f18fa11a8d8dc3898e3972]
+link TelemCtrl to SessionEnt--><path d="M330.4,235.9531 C346.06,253.6131 367.59,277.8931 383.32,295.6331 " fill="none" id="TelemCtrl-SessionEnt" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[36fb47c219a4b93a7957e805b6b3e31e]
+link AlertCtrl to DBBnd--><path d="M179.92,235.9531 C196.74,253.6131 219.88,277.8931 236.78,295.6331 " fill="none" id="AlertCtrl-DBBnd" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[4d26f209035fb759684be1af3324bb7f]
+link TelemCtrl to DBBnd--><path d="M298.93,235.9531 C290.44,253.6131 278.75,277.8931 270.22,295.6331 " fill="none" id="TelemCtrl-DBBnd" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[9ad7f8f35f3810bc20a9940968fabefc]
+link FrontAPIBnd to AlertCtrl--><path d="M151.74,127.9531 C153.07,145.6131 154.9,169.8931 156.24,187.6331 " fill="none" id="FrontAPIBnd-AlertCtrl" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8d63e873d9b127269994a5b64237bb9f]
+link FrontAPIBnd to TelemCtrl--><path d="M184.72,127.9531 C211.46,145.6731 248.28,170.0631 275.07,187.8131 " fill="none" id="FrontAPIBnd-TelemCtrl" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[82588d5b5775dc897e2e376f5582c663]
+@startuml cloud_bce
+title Robustness Diagram - Cloud Repository (.NET Backend)
+
+skinparam backgroundColor white
+skinparam componentStyle uml2
+
+package "Docker Container: Cloud Repo (.NET)" {
+    boundary "Arduino 5G Ingestion" as IngestBnd
+    boundary "Frontend Web API" as FrontAPIBnd
+    boundary "Database Adapter" as DBBnd
+    
+    control "Alert Router" as AlertCtrl
+    control "Telemetry Controller" as TelemCtrl
+    
+    entity "SOSAlert (Record)" as AlertEnt
+    entity "RoverSession" as SessionEnt
+    
+    IngestBnd - - AlertCtrl
+    IngestBnd - - TelemCtrl
+    
+    AlertCtrl - - AlertEnt
+    TelemCtrl - - SessionEnt
+    
+    AlertCtrl - - DBBnd
+    TelemCtrl - - DBBnd
+    
+    FrontAPIBnd - - AlertCtrl
+    FrontAPIBnd - - TelemCtrl
+}
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 10:22:07 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.19+10
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>
