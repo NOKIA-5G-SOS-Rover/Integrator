@@ -1,0 +1,41 @@
+name: Generate PlantUML Diagrams
+
+# 1. Trigger: When does this run?
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - '**.puml'
+
+# 2. Permissions: Give the bot the right to push code back to the repo
+permissions:
+  contents: write
+
+# 3. Jobs: What does the server actually do?
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest # Spins up a fresh Linux machine
+
+    steps:
+      # Step A: Download your repository's code onto the Linux machine
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step B: Install the tools needed to read PlantUML
+      - name: Install Graphviz and PlantUML
+        run: sudo apt-get update && sudo apt-get install -y graphviz plantuml
+
+      # Step C: Find all nested .puml files and generate SVGs into the root /img folder
+      - name: Generate SVGs
+        run: |
+          mkdir -p img
+          find docs -name "*.puml" -exec plantuml -tsvg {} -o "${GITHUB_WORKSPACE}/img" \;
+
+      # Step D: Check if any SVGs changed, and if so, commit them back to your repo
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-generate SVG diagrams [skip ci]"
+          file_pattern: "img/*.svg"
