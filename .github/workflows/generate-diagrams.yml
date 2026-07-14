@@ -1,41 +1,46 @@
 name: Generate PlantUML Diagrams
 
-# 1. Trigger: When does this run?
 on:
   push:
-    branches:
-      - main
-      - master
-    paths:
-      - '**.puml'
+    branches: [main, master]
+    paths: ['**.puml']
 
-# 2. Permissions: Give the bot the right to push code back to the repo
 permissions:
   contents: write
 
-# 3. Jobs: What does the server actually do?
 jobs:
   build-and-commit:
-    runs-on: ubuntu-latest # Spins up a fresh Linux machine
-
+    runs-on: ubuntu-latest
     steps:
-      # Step A: Download your repository's code onto the Linux machine
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step B: Install the tools needed to read PlantUML
-      - name: Install Graphviz and PlantUML
-        run: sudo apt-get update && sudo apt-get install -y graphviz plantuml
+      # Step B: Install Graphviz, PlantUML, and the necessary Java Runtime
+      - name: Install Tools
+        run: sudo apt-get update && sudo apt-get install -y graphviz plantuml default-jre
 
-      # Step C: Find all nested .puml files and generate SVGs into the root /img folder
+      # Step C: Generate SVGs
       - name: Generate SVGs
         run: |
           mkdir -p img
+          # Print files found for debugging
+          echo "Found these PUML files:"
+          find docs -name "*.puml"
+          # Run generation
           find docs -name "*.puml" -exec plantuml -tsvg {} -o "${GITHUB_WORKSPACE}/img" \;
+          # Show us what was generated
+          echo "Generated contents in img folder:"
+          ls -R img/
 
-      # Step D: Check if any SVGs changed, and if so, commit them back to your repo
+      # Step D: Native Commit
       - name: Commit and Push Changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: auto-generate SVG diagrams [skip ci]"
-          file_pattern: "img/*.svg"
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add img/*.svg
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: auto-generate SVG diagrams [skip ci]"
+            git push
+          fi
