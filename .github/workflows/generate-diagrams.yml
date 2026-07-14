@@ -34,6 +34,9 @@ jobs:
             echo "No changes detected, nothing to commit."
           else
             git commit -m "chore: auto-generate SVG diagrams [skip ci]"
+            
+            # This is the magic line that fixes your error
             git pull --rebase origin main || git pull --rebase origin master
+            
             git push
           fi
