@@ -1,4 +1,4 @@
-name: Generate PlantUML Diagrams
+name: Generate PlantUML Diagramsv2
 
 on:
   push:
