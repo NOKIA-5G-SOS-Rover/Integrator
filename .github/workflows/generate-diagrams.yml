@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Important: gets the full history so we can pull/push
+          fetch-depth: 0 # Necessary to pull and rebase
 
       - name: Install Tools
         run: sudo apt-get update && sudo apt-get install -y graphviz plantuml default-jre
@@ -26,10 +26,25 @@ jobs:
           find docs -name "*.puml" -exec plantuml -tsvg {} -o "${GITHUB_WORKSPACE}/img" \;
 
       - name: Commit and Push Changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: auto-generate SVG diagrams [skip ci]"
-          file_pattern: "img/*.svg"
-          # This pulls the latest remote changes before pushing
-          skip_fetch: false 
-          push_options: '--force'
+        run: |
+          # Configure Git
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Add changes
+          git add img/*.svg
+          
+          # Check if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            # Commit changes
+            git commit -m "chore: auto-generate SVG diagrams [skip ci]"
+            
+            # Pull latest changes (rebase) to handle the "diverged" error
+            # This incorporates any new commits from main into our local state
+            git pull --rebase origin main || git pull --rebase origin master
+            
+            # Push back to repo
+            git push
+          fi
