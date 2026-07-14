@@ -6,7 +6,7 @@ skinparam componentStyle uml2
 
 package "Embedded Repo (Arduino C/C++)" {
     boundary "5G Module Adapter (To .NET Cloud)" as 5GBnd
-    boundary "Motor Drivers (PWM)" as MotorBnd
+    boundary "Motor Drivers (PWM 9999999999999999999999)" as MotorBnd
     boundary "AI Data Interface" as AIBnd
     
     control "Main Navigation Controller" as NavCtrl
